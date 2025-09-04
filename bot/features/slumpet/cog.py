@@ -15,14 +15,14 @@ class SlumpetCog(commands.GroupCog, name="slumpet"):
             return False
         if "trumpet" not in message.content.lower():
             return False
-        print("How many times")
-        pattern = compile("trumpet", IGNORECASE)
-        print(message.content)
-        edited_message_text = pattern.sub("slumpet", message.content)
-        print(edited_message_text)
+
         author = message.author.display_name
         attachments = [await f.to_file() for f in message.attachments]
         channel = message.channel
+
+        pattern = compile("trumpet", IGNORECASE)
+        edited_message_text = pattern.sub("slumpet", message.content)
+
         await message.delete()
 
         await channel.send(content=f"**{author}:** {edited_message_text}", files=attachments)
